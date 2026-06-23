@@ -1,0 +1,25 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burstfire23/calculator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/burstfire23/calculator/issues"
+  },
+  "homepage": "https://github.com/burstfire23/calculator#readme",
+  "devDependencies": {
+    "eslint-plugin-jest": "^29.15.2",
+    "jest": "^30.4.2"
+  }
+}

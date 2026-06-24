@@ -3,7 +3,7 @@ import {add, subtract, multiply, divide} from "./script.js";
 
 describe("add", () => {
     test("positive integers", () =>{
-        expect(add(2, 5)).toBe(5);
+        expect(add(2, 5)).toBe(7);
     });
 
     test("negative integers", () =>{
@@ -15,7 +15,7 @@ describe("add", () => {
     });
 
     test("mixed numbers", () =>{
-        expect(add(-5.2, 7.1)).toBe(1.9);
+        expect(add(-5.2, 7.1)).toBeCloseTo(1.9);
     });
 });
 
@@ -33,7 +33,7 @@ describe("subtract", () => {
     });
 
     test("mixed numbers", () =>{
-        expect(subtract(5.2, -7.1)).toBe(12.3);
+        expect(subtract(5.2, -7.1)).toBeCloseTo(12.3);
     });
 });
 
@@ -51,7 +51,7 @@ describe("multiply", () => {
     });
 
     test("mixed numbers", () =>{
-        expect(multiply(8.1, -3.9)).toBe(-31.59);
+        expect(multiply(8.1, -3.9)).toBeCloseTo(-31.59);
     });
 });
 
@@ -69,7 +69,7 @@ describe("divide", () => {
     });
 
     test("mixed numbers", () =>{
-        expect(divide(8, -5)).toBe(-1.6);
+        expect(divide(8.2, -1.5)).toBeCloseTo(-5.47);
     });
 
     test("positive divide by zero", () =>{
@@ -77,7 +77,7 @@ describe("divide", () => {
     });
 
     test("negative divide by zero", () =>{
-        expect(divide(8, 0)).toBe(-Infinity);
+        expect(divide(-8, 0)).toBe(-Infinity);
     });
 
     test("zero divide by zero", () =>{

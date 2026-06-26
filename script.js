@@ -48,6 +48,10 @@ export function setNum2(num) {
     num2 = num;
 }
 
+export function setOperator(op) {
+    operator = op;
+}
+
 export function updateOperand(num){
     if (num1 == undefined) {
         num1 = num;

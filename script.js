@@ -55,10 +55,10 @@ export function setOperator(op) {
 }
 
 export function updateOperand(num){
-    if (num1 == "") {
-        num1 = num;
-    } else if (num2 == "") {
-        num2 = num;
+    if (operator == undefined) {
+        num1 += num;
+    } else if (operator != undefined) {
+        num2 += num;
     }
 }
 

@@ -135,28 +135,37 @@ describe("updateOperand", () => {
     beforeEach(() => {
         setNum1("");
         setNum2("");
+        setOperator(undefined);
     });
 
-    test("num1 undefined", () => {
+    test("num1 empty, operator undefined", () => {
         updateOperand("5");
 
         expect(num1).toBe("5");
     });
 
-    test("num1 defined and num2 undefined", () => {
+    test("num1 non empty, operator undefined", () => {
         setNum1("5");
         updateOperand("6");
 
-        expect(num2).toBe("6");
+        expect(num1).toBe("56");
     });
 
-    test("num1 and num2 defined", () => {
-        setNum1("5");
-        setNum2("6");
+    test("num1 and operator defined, num2 empty", () => {
+        setNum1("56");
+        setOperator("+")
         updateOperand("7");
 
-        expect(num1).toBe("5");
-        expect(num2).toBe("6");
+        expect(num2).toBe("7");
+    });
+
+    test("num1 and operator defined, num2 non empty", () => {
+        setNum1("56");
+        setOperator("+")
+        setNum2("7")
+        updateOperand("9");
+
+        expect(num2).toBe("79");
     });
 
 });

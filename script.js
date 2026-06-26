@@ -2,6 +2,8 @@ export let num1 = undefined;
 export let operator = undefined;
 export let num2 = undefined;
 
+const display = document.querySelector(".display");
+
 export function add(num1, num2) {
     return num1 + num2;
 }
@@ -31,9 +33,9 @@ export function operate(operator, num1, num2) {
     };
 }
 
-function display(item){
+function displayItem(item){
     const p = document.createElement("p");
-    const display = document.querySelector(".display");
+    
 
     p.textContent = item;
 
@@ -78,8 +80,8 @@ const equal = document.querySelector(".equal");
 
 numbers.forEach((button) => {
     button.addEventListener("click", (event) => {
-        text = event.target.textContent;
-        display(text);
+        let text = event.target.textContent;
+        displayItem(text);
         updateOperand(Number(text))
     });
 
@@ -87,9 +89,17 @@ numbers.forEach((button) => {
 
 operators.forEach((button) => {
     button.addEventListener("click", (event) => {
-        text = event.target.textContent;
-        display(text);
-        updateOperator(text);
-    });
+        let text = event.target.textContent;
+        if (updateOperator(text)) {
+            displayItem(text);
 
+        }
+    });
 });
+
+clear.addEventListener("click", (event) => {
+    display.replaceChildren();
+    num1 = undefined;
+    operator = undefined;
+    num2 = undefined;
+})

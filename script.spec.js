@@ -1,4 +1,4 @@
-import {add, subtract, multiply, divide, setOperator, setNum1, setNum2, num1, operator, num2, operate, updateOperand, updateOperator} from "./script.js";
+import {add, subtract, multiply, divide, setOperator, setNum1, setNum2, setResult, getNum1, getOperator, getNum2, getResult, operate, updateOperand, updateOperator, calculate} from "./script.js";
 
 
 describe("add", () => {
@@ -112,21 +112,21 @@ describe("updateOperator", () => {
         setNum1("5");
         expect(updateOperator("+")).toBe(true);
 
-        expect(operator).toBe("+");
+        expect(getOperator()).toBe("+");
     });
 
     test("op undefined, num1 empty", () => {
         setNum1("");
         expect(updateOperator("+")).toBe(false);
 
-        expect(operator).toBe(undefined);
+        expect(getOperator()).toBe(undefined);
     });
 
     test("op defined", () => {
         setOperator("-");
         expect(updateOperator("x")).toBe(false);
 
-        expect(operator).toBe("-");
+        expect(getOperator()).toBe("-");
     });
 
 });
@@ -141,14 +141,14 @@ describe("updateOperand", () => {
     test("num1 empty, operator undefined", () => {
         updateOperand("5");
 
-        expect(num1).toBe("5");
+        expect(getNum1()).toBe("5");
     });
 
     test("num1 non empty, operator undefined", () => {
         setNum1("5");
         updateOperand("6");
 
-        expect(num1).toBe("56");
+        expect(getNum1()).toBe("56");
     });
 
     test("num1 and operator defined, num2 empty", () => {
@@ -156,7 +156,7 @@ describe("updateOperand", () => {
         setOperator("+")
         updateOperand("7");
 
-        expect(num2).toBe("7");
+        expect(getNum2()).toBe("7");
     });
 
     test("num1 and operator defined, num2 non empty", () => {
@@ -165,7 +165,96 @@ describe("updateOperand", () => {
         setNum2("7")
         updateOperand("9");
 
-        expect(num2).toBe("79");
+        expect(getNum2()).toBe("79");
     });
+
+});
+
+describe("calculate", () => {
+    beforeEach(() => {
+        setNum1("");
+        setNum2("");
+        setOperator(undefined);
+        setResult("");
+    });
+
+    describe("fail to calculate", () => {
+        test("empty num1", () => {
+            setNum2("5");
+            setOperator("/");
+            calculate();
+
+            expect(getResult()).toBe("");
+        });
+
+        test("undefined operator", () => {
+            setNum1("4");
+            setNum2("5");
+            calculate();
+    
+            expect(getResult()).toBe("");
+        });
+
+        test("empty num2", () => {
+            setNum1("5");
+            setOperator("/");
+            calculate();
+    
+            expect(getResult()).toBe("");
+        });
+
+        test("all empty", () => {
+            calculate();
+            expect(getResult()).toBe("");
+        });
+    });
+
+    describe("successful calculation", () => {
+        test("add", () => {
+            setNum1(1);
+            setNum2(2);
+            setOperator("+");
+
+            calculate();
+
+            expect(getResult()).toBe(3);
+            expect(getNum1()).toBe("3");
+        });
+
+        test("subtract", () => {
+            setNum1(1);
+            setNum2(2);
+            setOperator("-");
+
+            calculate();
+
+            expect(getResult()).toBe(-1);
+            expect(getNum1()).toBe("-1");
+        });
+
+        test("multiply", () => {
+            setNum1(4);
+            setNum2(2);
+            setOperator("x");
+
+            calculate();
+
+            expect(getResult()).toBe(8);
+            expect(getNum1()).toBe("8");
+        });
+
+        test("divide", () => {
+            setNum1(20);
+            setNum2(2);
+            setOperator("/");
+
+            calculate();
+
+            expect(getResult()).toBe(10);
+            expect(getNum1()).toBe("10");
+        });
+    });
+
+
 
 });

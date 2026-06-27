@@ -73,15 +73,15 @@ describe("divide", () => {
     });
 
     test("positive divide by zero", () =>{
-        expect(divide(8, 0)).toBe(Infinity);
+        expect(divide(8, 0)).toBe("Error");
     });
 
     test("negative divide by zero", () =>{
-        expect(divide(-8, 0)).toBe(-Infinity);
+        expect(divide(-8, 0)).toBe("Error");
     });
 
     test("zero divide by zero", () =>{
-        expect(divide(0, 0)).toBe(NaN);
+        expect(divide(0, 0)).toBe("Error");
     });
 });
 
@@ -218,6 +218,7 @@ describe("calculate", () => {
             calculate();
 
             expect(getResult()).toBe("3");
+            expect(getNum1()).toBe("3");
             
         });
 
@@ -229,6 +230,7 @@ describe("calculate", () => {
             calculate();
 
             expect(getResult()).toBe("-1");
+            expect(getNum1()).toBe("-1");
            
         });
 
@@ -240,6 +242,7 @@ describe("calculate", () => {
             calculate();
 
             expect(getResult()).toBe("8");
+            expect(getNum1()).toBe("8");
             
         });
 
@@ -251,6 +254,7 @@ describe("calculate", () => {
             calculate();
 
             expect(getResult()).toBe("10");
+            expect(getNum1()).toBe("10");
             
         });
     });

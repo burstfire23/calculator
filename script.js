@@ -45,7 +45,11 @@ function displayItem(item){
     
     p.textContent = item;
 
-    display.appendChild(p);
+    if (display) {
+        display.appendChild(p);
+
+    }
+    
 }
 
 export function getNum1(){
@@ -98,7 +102,10 @@ export function updateOperator(op){
 }
 
 function clear(){
-    display.replaceChildren();
+    if (display) {
+        display.replaceChildren();
+    }
+    
     num1 = "";
     operator = undefined;
     num2 = "";
@@ -109,9 +116,14 @@ function clear(){
 export function calculate() {
     if (num1 != "" && num2 != "" && operator != undefined) {
         result = String(operate(operator, Number(num1), Number(num2)));
-        return true;
+
+        let answer = result;
+        clear();
+        displayItem(answer);
+        setNum1(answer);
+        
     }
-    return false;
+    
 }
 
 const numbers = document.querySelectorAll(".number");
@@ -125,7 +137,7 @@ numbers.forEach((button) => {
     button.addEventListener("click", (event) => {
         let text = event.target.textContent;
 
-        if (result != "") {
+        if (result != "" && operator == undefined) {
             clear();
         }
 
@@ -145,6 +157,12 @@ operators.forEach((button) => {
         if (result != "") {
             result = "";
         }
+
+        if (num1 != "" && num2 != "" && operator != undefined) {
+            calculate();
+            setOperator(text);
+            displayItem(text);
+        }
     });
 });
 
@@ -156,12 +174,7 @@ if (clearButton) {
 
 if (equalsButton) {
     equalsButton.addEventListener("click", (event) => {
-        if (calculate()){
-            let answer = result;
-            clear();
-            displayItem(answer);
-            setNum1(answer);
-        }
+        calculate();
     });
 }
 

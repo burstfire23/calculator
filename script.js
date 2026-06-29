@@ -5,6 +5,13 @@ let result = "";
 
 const display = document.querySelector(".display");
 
+const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const misc = document.querySelectorAll(".misc");
+const clearButton = document.querySelector(".clear");
+const equalsButton = document.querySelector(".equals");
+const toggleButton = document.querySelector(".toggle");
+
 export function add(num1, num2) {
     return Number((num1 + num2).toFixed(10));
 }
@@ -124,15 +131,14 @@ export function calculate() {
         setResult(answer);
         
     }
-    
 }
 
-const numbers = document.querySelectorAll(".number");
-const operators = document.querySelectorAll(".operator");
-const misc = document.querySelectorAll(".misc");
-const clearButton = document.querySelector(".clear");
-const equalsButton = document.querySelector(".equals");
-
+function toggleTheme() {
+    const root = document.documentElement; 
+  	const newTheme = root.className === "dark" ? "light" : "dark"; 
+  	root.className = newTheme;
+  	
+}
 
 numbers.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -197,5 +203,9 @@ misc.forEach((button) => {
             }
         });
     }
+});
+
+toggleButton.addEventListener("click", () => {
+    toggleTheme();
 });
 

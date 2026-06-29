@@ -136,7 +136,21 @@ export function calculate() {
 function toggleTheme() {
     const root = document.documentElement; 
   	const newTheme = root.className === "dark" ? "light" : "dark"; 
-  	root.className = newTheme;
+  	const toggleIcon = document.querySelector("img");
+    root.className = newTheme;
+
+    if (newTheme == "dark") {
+        toggleIcon.src = "./images/sun.png";
+        toggleIcon.alt = "sun icon";
+        toggleIcon.width = "40";
+
+    } else {
+        toggleIcon.src = "./images/moon.png";
+        toggleIcon.alt = "moon icon";
+        toggleIcon.width = "40";
+
+    }
+    
   	
 }
 

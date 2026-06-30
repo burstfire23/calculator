@@ -28,6 +28,79 @@ function clear(){
     setOperator(undefined);
     setNum2("");
     setResult("");
+
+}
+
+function handleNumbersClick(text) {
+    if (getResult() != "" && getOperator() == undefined) {
+        clear();
+    }
+
+    displayItem(text);
+    updateOperand(text)
+
+}
+
+function handleOperatorsClick(text) {
+    if (updateOperator(text)) {
+        displayItem(text);
+    }
+
+    if (getResult() != "") {
+        setResult("");
+    }
+
+    if (getNum1() != "" && getNum2() != "" && getOperator() != undefined) {
+        let answer = calculate();
+        clear();
+        displayItem(answer);
+        setNum1(answer);
+        setResult(answer);
+        setOperator(text);
+        displayItem(text);
+    }
+
+}
+
+function handleEqualsClick(){
+    let answer = calculate();
+    clear();
+    displayItem(answer);
+    setNum1(answer);
+    setResult(answer);
+
+}
+
+function handleDecimalClick() {
+    if (getResult() == "") {
+        if (getOperator() == undefined) {
+            if (!getNum1().includes(".")) {
+                updateOperand(".");
+                displayItem(".");
+            }
+        } else {
+            if (!getNum2().includes(".")) {
+                updateOperand(".");
+                displayItem(".");
+            }
+        }
+    }
+}
+
+function handleNegativeClick() {
+    if (getResult() == "") {
+        if (getOperator() == undefined) {
+            if (getNum1() == "") {
+                updateOperand("-");
+                displayItem("-");
+            }
+        } else {
+            if (getNum2() == "") {
+                updateOperand("-");
+                displayItem("-");
+            }
+        }
+    }
 }
 
 function toggleTheme() {
@@ -53,12 +126,9 @@ numbers.forEach((button) => {
     button.addEventListener("click", (event) => {
         let text = event.target.textContent;
 
-        if (getResult() != "" && getOperator() == undefined) {
-            clear();
-        }
+        handleNumbersClick(text);
 
-        displayItem(text);
-        updateOperand(text)
+        
     });
 
 });
@@ -66,80 +136,37 @@ numbers.forEach((button) => {
 operators.forEach((button) => {
     button.addEventListener("click", (event) => {
         let text = event.target.textContent;
-        if (updateOperator(text)) {
-            displayItem(text);
-        }
 
-        if (getResult() != "") {
-            setResult("");
-        }
-
-        if (getNum1() != "" && getNum2() != "" && getOperator() != undefined) {
-            let answer = calculate();
-            clear();
-            displayItem(answer);
-            setNum1(answer);
-            setResult(answer);
-            setOperator(text);
-            displayItem(text);
-        }
+        handleOperatorsClick(text);
+        
     });
 });
 
-if (clearButton) {
-    clearButton.addEventListener("click", (event) => {
-        clear();
-    });
-}
 
-if (equalsButton) {
-    equalsButton.addEventListener("click", (event) => {
-        let answer = calculate();
-        clear();
-        displayItem(answer);
-        setNum1(answer);
-        setResult(answer);
-    });
-}
+clearButton.addEventListener("click", (event) => {
+    clear();
+});
+
+
+equalsButton.addEventListener("click", (event) => {
+    handleEqualsClick();
+});
+
 
 misc.forEach((button) => {
     if (button.textContent == ".") {
         button.addEventListener("click", () => {
-            if (getResult() == "") {
-                if (getOperator() == undefined) {
-                    if (!getNum1().includes(".")) {
-                        updateOperand(".");
-                        displayItem(".");
-                    }
-                } else {
-                    if (!getNum2().includes(".")) {
-                        updateOperand(".");
-                        displayItem(".");
-                    }
-                }
-            }
+            handleDecimalClick();
+            
         });
     } else if (button.textContent == "+/-") {
         button.addEventListener("click", () => {
-            if (getResult() == "") {
-                if (getOperator() == undefined) {
-                    if (getNum1() == "") {
-                        updateOperand("-");
-                        displayItem("-");
-                    }
-                } else {
-                    if (getNum2() == "") {
-                        updateOperand("-");
-                        displayItem("-");
-                    }
-                }
-            }
+            handleNegativeClick();
+            
         });
     }
 });
 
-if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
-        toggleTheme();
-    });
-}
+toggleButton.addEventListener("click", () => {
+    toggleTheme();
+});

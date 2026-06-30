@@ -128,6 +128,8 @@ numbers.forEach((button) => {
 
         handleNumbersClick(text);
 
+        event.currentTarget.blur();
+
         
     });
 
@@ -138,6 +140,8 @@ operators.forEach((button) => {
         let text = event.target.textContent;
 
         handleOperatorsClick(text);
+
+        event.currentTarget.blur();
         
     });
 });
@@ -145,11 +149,15 @@ operators.forEach((button) => {
 
 clearButton.addEventListener("click", (event) => {
     clear();
+
+    event.currentTarget.blur();
 });
 
 
 equalsButton.addEventListener("click", (event) => {
     handleEqualsClick();
+
+    event.currentTarget.blur();
 });
 
 
@@ -157,11 +165,15 @@ misc.forEach((button) => {
     if (button.textContent == ".") {
         button.addEventListener("click", () => {
             handleDecimalClick();
+
+            event.currentTarget.blur();
             
         });
     } else if (button.textContent == "+/-") {
         button.addEventListener("click", () => {
             handleNegativeClick();
+
+            event.currentTarget.blur();
             
         });
     }
@@ -169,4 +181,29 @@ misc.forEach((button) => {
 
 toggleButton.addEventListener("click", () => {
     toggleTheme();
+
+    event.currentTarget.blur();
+});
+
+const root = document.documentElement;
+root.addEventListener("keydown", (event) => {
+    const key = event.key;
+    const nums = "0123456789";
+    const operators = "+-x/";
+
+    if (nums.includes(key)) {
+        handleNumbersClick(key);
+    } else if (operators.includes(key)) {
+        handleOperatorsClick(key);
+    } else if (key == "=") {
+        handleEqualsClick();
+    } else if (key == ".") {
+        handleDecimalClick();
+    } else if (key == "n") {
+        handleNegativeClick();
+    } else if (key == "c") {
+        clear();
+    } else if (key == "t") {
+        toggleTheme();
+    }
 });

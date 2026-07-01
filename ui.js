@@ -158,8 +158,6 @@ numbers.forEach((button) => {
         handleNumbersClick(text);
 
         event.currentTarget.blur();
-
-        
     });
 
 });

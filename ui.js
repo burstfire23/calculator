@@ -190,14 +190,14 @@ equalsButton.addEventListener("click", (event) => {
 
 misc.forEach((button) => {
     if (button.textContent == ".") {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
             handleDecimalClick();
 
             event.currentTarget.blur();
             
         });
     } else if (button.textContent == "+/-") {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", (event) => {
             handleNegativeClick();
 
             event.currentTarget.blur();
@@ -206,7 +206,7 @@ misc.forEach((button) => {
     }
 });
 
-toggleButton.addEventListener("click", () => {
+toggleButton.addEventListener("click", (event) => {
     toggleTheme();
 
     event.currentTarget.blur();
@@ -236,5 +236,7 @@ root.addEventListener("keydown", (event) => {
         clear();
     } else if (key == "t") {
         toggleTheme();
+    } else if (key == "Backspace") {
+        handleBackspace();
     }
 });

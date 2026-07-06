@@ -1,1 +1,43 @@
-# calculator
+# Calculator
+
+## Background
+
+This is a basic web based calculator with a few extra features.
+
+I built this project because it is a simple project I can use to practice my HTML, CSS and JS skills 
+but is also a project with room for more complicated extensions
+
+## Features
+  
+- Basic arithmetic operations (add, subtract, multiply, divide)
+- Supports decimals and negative numbers
+- Backspace button to delete erroneous entires
+- Light and dark theme toggle button
+- Keyboard support
+
+## Languages used
+- HTML
+- CSS
+- JS
+
+## Demo
+
+https://burstfire23.github.io/calculator/
+
+## Usage
+- Every button on screen corresponds to the same key except for:
+    - light/dark mode toggle: t
+    - clear: c
+    - negative: n
+
+- Only one equation in the form of (opearand1) (operator) (opearand2) is supported at once so if another operator is clicked with an equation already entered, the equation is calculated and displayed
+
+- When a result is displayed, clicking a number key wipes the result
+
+
+
+
+
+
+
+ 

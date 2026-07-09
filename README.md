@@ -22,7 +22,7 @@ but is also a project with room for more complicated extensions
 
 ## Demo
 
-https://burstfire23.github.io/calculator/
+https://iliang33.github.io/calculator/
 
 ## Usage
 - Every button on screen corresponds to the same key except for:

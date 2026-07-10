@@ -21,7 +21,6 @@ but is also a project with room for more complicated extensions
 - JS
 
 ## Demo
-
 https://iliang33.github.io/calculator/
 
 ## Usage

@@ -22,7 +22,6 @@ but is also a project with room for more complicated extensions
 - Jest
 
 ## Requirements
-- a modern web browser (Ex: Chrome, Firefox, Safari, Edge)
 - Node.js and npm 
 
 ## Demo
